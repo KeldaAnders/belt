@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'belt_app/css/main.css' %}">
+</head>
+
+<body>
+
+    <div class="box2 ">
+        <h1>one</h1>
+        <h2>two</h2>
+        <h3>three</h3>
+        <h4>four</h4>
+        <h5>five</h5>
+        <h1>Registration</h1> {% if request.session.errors_list %} {% for error in request.session.errors_list %}
+        <p class="red">{{error}}</p>
+        {% endfor %} {% endif %}
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <label for="user_name">User Name:</label>
+            <input type="text" name="user_name" value="">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" value="">
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" value="">
+            <label for="email">Email Address:</label>
+            <input type="text" name="email" value="">
+            <label for="password">Password:</label>
+            <input type="password" name="password" value="1234567Qa!">
+            <label for="conf_password">Verify Password:</label>
+            <input type="password" name="conf_password" value="1234567Qa!">
+
+            <input class="btn" type="submit" name="submit" value="Submit">
+        </form>
+
+        <h1>Login</h1> {% if request.session.errors_log_list %} {% for error in request.session.errors_log_list %}
+        <p class="red">{{error}}</p>
+        {% endfor %} {% endif %}
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+
+            <label for="email">Email Address:</label>
+            <input type="text" name="email" value="">
+            <label for="password">Password:</label>
+            <input type="password" name="password" value="">
+
+
+            <input class="btn" type="submit" name="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>
